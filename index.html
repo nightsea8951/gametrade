@@ -289,7 +289,7 @@
         } else if (jpy >= 30000 && jpy <= 50000) {
             twd = (jpy / 5) * 1.28;
         } else {
-            let rawTwd = (jpy / 5) * 1.25;
+            let rawTwd = (jpy / 5) * 1.265;
             let remainder = rawTwd % 100;
             twd = remainder <= 50 ? Math.floor(rawTwd / 100) * 100 : Math.ceil(rawTwd / 100) * 100;
         }
