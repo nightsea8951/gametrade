@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JP-PRO | 日本代購專業大尺寸試算</title>
+    <title>JP-PRO | 日本代購專業試算</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -11,21 +11,19 @@
     <style>
         :root {
             --primary: #007AFF; 
-            --secondary: #a29bfe;
             --accent: #00cec9;
             --success: #34C759;
             --bg-light: #F5F5F7;
             --card-white: rgba(255, 255, 255, 0.92); 
-            --border-glow: rgba(0, 122, 255, 0.2);
             --text-dark: #1D1D1F;
             --text-gray: #86868B;
-            --cat-color: #2c3e50; /* 炭炭黑 */
+            --cat-color: #2c3e50;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body { 
-            font-family: 'Noto Sans TC', 'Inter', sans-serif; 
+            font-family: 'Noto Sans TC', sans-serif; 
             min-height: 100vh; 
             display: flex; 
             justify-content: center; 
@@ -33,10 +31,10 @@
             color: var(--text-dark);
             padding: 40px 20px;
             overflow-x: hidden;
-            position: relative; /* 為了小貓定位 */
+            position: relative;
         }
 
-        /* 動態流動背景 */
+        /* --- 動態流動背景 --- */
         body::before, body::after {
             content: "";
             position: absolute;
@@ -44,26 +42,23 @@
             z-index: -1;
             transform-origin: center;
         }
-
         body::before {
             animation: 流動Silk 12s ease-in-out infinite;
             background: linear-gradient(-45deg, #fff, #e3f2fd, #f1f8e9, #fff);
             background-size: 400% 400%;
         }
-
         body::after {
             animation: 流動Silk 15s ease infinite alternate;
             background: radial-gradient(circle at 10% 20%, rgb(255, 255, 255) 0%, rgb(220, 240, 255) 50%, rgb(200, 230, 255) 100%);
             opacity: 0.5;
         }
-
         @keyframes 流動Silk {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* 旗艦級大尺寸卡片 */
+        /* --- 放大卡片容器 --- */
         .container {
             width: 100%;
             max-width: 600px;
@@ -75,45 +70,43 @@
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             position: relative;
-            z-index: 2; /* 確保在小貓前面 */
+            z-index: 2;
             animation: slideInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 10px; color: var(--text-dark); }
+        header { text-align: center; margin-bottom: 35px; }
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
         .subtitle { font-size: 0.95rem; color: var(--text-gray); letter-spacing: 2px; }
 
-        /* 標籤美化 */
+        /* --- 彩色標籤樣式 --- */
         .badges-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
             margin-bottom: 40px;
         }
         .badge {
-            background: #F0F7FF;
             padding: 8px 18px;
-            border-radius: 15px;
+            border-radius: 14px;
             font-size: 0.85rem;
-            color: var(--primary);
-            border: 1px solid rgba(0, 122, 255, 0.1);
+            font-weight: 600;
             transition: 0.3s ease;
-            font-weight: 500;
+            border: 1.5px solid transparent;
         }
-        .badge:hover { background: var(--primary); color: white; transform: scale(1.05); }
+        .badge:hover { transform: scale(1.1); filter: brightness(0.95); }
 
-        /* 輸入區域 */
+        /* 各類別專屬顏色 */
+        .bg-concert { background: #E3F2FD; color: #1976D2; } /* 藍 */
+        .bg-game { background: #F3E5F5; color: #7B1FA2; }    /* 紫 */
+        .bg-godzilla { background: #FFF3E0; color: #E65100; } /* 橘 */
+        .bg-cvs { background: #E8F5E9; color: #2E7D32; }     /* 綠 */
+        .bg-errand { background: #FFEBEE; color: #C62828; }  /* 紅 */
+        .bg-global { background: #E0F7FA; color: #00838F; }  /* 青 */
+
+        /* --- 輸入與按鈕 --- */
         .input-box { margin-bottom: 30px; }
-        label { display: block; font-size: 1rem; margin-bottom: 15px; color: var(--text-dark); font-weight: 500; }
-        
+        label { display: block; font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; }
         .field-group { position: relative; }
         .field-group .unit {
             position: absolute;
@@ -124,27 +117,20 @@
             color: var(--primary);
             font-weight: 700;
         }
-
         input {
             width: 100%;
             background: #FFFFFF;
             border: 2px solid #E5E5E7;
             border-radius: 22px;
             padding: 22px 25px 22px 65px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--text-dark);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
         }
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 20px var(--border-glow);
-            transform: scale(1.01);
-        }
+        input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 20px rgba(0,122,255,0.15); }
 
-        /* 按鈕美化 */
         button {
             width: 100%;
             padding: 22px;
@@ -152,22 +138,17 @@
             border: none;
             border-radius: 22px;
             color: white;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: 0.3s;
             box-shadow: 0 10px 25px rgba(0, 122, 255, 0.25);
-            letter-spacing: 1px;
         }
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 122, 255, 0.35);
-        }
-        button:active { transform: translateY(0); }
+        button:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 122, 255, 0.35); }
 
-        /* 結果儀表板 */
+        /* --- 結果顯示 --- */
         #result-area {
-            margin-top: 45px;
+            margin-top: 40px;
             background: #F9FAFB;
             border-radius: 30px;
             padding: 35px;
@@ -176,137 +157,69 @@
             display: none;
             animation: fadeIn 0.5s ease-out;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .res-label { font-size: 1rem; color: var(--text-gray); letter-spacing: 2px; margin-bottom: 12px; font-weight: 500;}
-        .res-value { 
-            font-size: 4rem;
-            font-family: 'Montserrat'; 
-            font-weight: 700; 
-            color: var(--success);
-            line-height: 1;
-        }
-        .currency { font-size: 1.5rem; margin-right: 8px; vertical-align: baseline; color: var(--text-dark); }
+        .res-label { font-size: 1rem; color: var(--text-gray); letter-spacing: 2px; margin-bottom: 12px; }
+        .res-value { font-size: 4.2rem; font-family: 'Montserrat'; font-weight: 700; color: var(--success); }
+        .currency { font-size: 1.6rem; margin-right: 8px; color: var(--text-dark); }
 
         footer { margin-top: 40px; font-size: 0.85rem; color: var(--text-gray); text-align: center; opacity: 0.7; }
 
-        /* --- 🐱 會動的黑貓 CSS 🐱 --- */
+        /* --- 🐱 會動的黑貓 --- */
         .cat-peek {
             position: fixed;
-            bottom: -5px; /* 躲在邊緣 peek effect */
-            right: 40px;
-            width: 90px;
-            height: 70px;
-            z-index: 1; /* 確保在 container 後面，但比 body 背景前面 */
+            bottom: -5px; right: 40px;
+            width: 90px; height: 70px;
+            z-index: 1;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: 0.3s;
         }
-        .cat-peek:hover {
-            transform: translateY(-10px); /* 滑鼠滑過會探出頭多一點 */
-        }
-
+        .cat-peek:hover { transform: translateY(-15px); }
         .cat-head {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 80px; height: 60px;
+            position: absolute; bottom: 0; left: 0;
+            width: 85px; height: 65px;
             background: var(--cat-color);
             border-radius: 50px 50px 0 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
-        /* 耳朵 */
         .ear {
-            position: absolute;
-            top: -18px;
+            position: absolute; top: -18px;
             width: 25px; height: 35px;
             background: var(--cat-color);
             border-radius: 50% 50% 0 0;
-            transform-origin: bottom center;
         }
-        .ear.left { left: 10px; transform: rotate(-15deg); }
-        .ear.right { right: 10px; transform: rotate(15deg); }
-
-        /* 耳朵動態抽動動畫 */
-        @keyframes earTwitchLeft {
-            0%, 90%, 100% { transform: rotate(-15deg) translateY(0); }
-            92% { transform: rotate(-25deg) translateY(-2px); }
-            94% { transform: rotate(-15deg) translateY(0); }
-        }
-        @keyframes earTwitchRight {
-            0%, 85%, 100% { transform: rotate(15deg) translateY(0); }
-            87% { transform: rotate(25deg) translateY(-2px); }
-            89% { transform: rotate(15deg) translateY(0); }
-        }
-        .ear.left { animation: earTwitchLeft 6s infinite alternate; }
-        .ear.right { animation: earTwitchRight 6s infinite 0.5s alternate; }
-
-        /* 眼睛 */
+        .ear.left { left: 10px; transform: rotate(-15deg); animation: earTwitchLeft 6s infinite alternate; }
+        .ear.right { right: 10px; transform: rotate(15deg); animation: earTwitchRight 6s infinite 0.5s alternate; }
         .eye {
-            position: absolute;
-            top: 20px;
-            width: 14px; height: 14px;
-            background: #F4D03F; /* 亮黃色貓眼 */
+            position: absolute; top: 22px;
+            width: 15px; height: 15px;
+            background: #F4D03F;
             border-radius: 50%;
-            transform-origin: center;
+            animation: blink 8s infinite;
         }
-        .eye.left { left: 20px; }
-        .eye.right { right: 20px; }
-        
-        /* 瞳孔 */
-        .eye::after {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 6px; height: 6px;
-            background: #000;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
+        .eye.left { left: 22px; } .eye.right { right: 22px; }
+        .eye::after { content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background: #000; border-radius: 50%; transform: translate(-50%, -50%); }
+        .nose { position: absolute; top: 38px; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #ffcccc; }
 
-        /* 眼睛眨眼動畫 */
-        @keyframes blink {
-            0%, 48%, 52%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.1); } /* 模擬上下眼瞼閉合 */
-        }
-        .eye { animation: blink 8s infinite; }
-
-        /* 鼻子 */
-        .nose {
-            position: absolute;
-            top: 35px; left: 50%;
-            transform: translateX(-50%);
-            width: 0; height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 5px solid #ffcccc; /* 粉嫩鼻子 */
-        }
-        
+        @keyframes blink { 0%, 48%, 52%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } }
+        @keyframes earTwitchLeft { 0%, 90% { transform: rotate(-15deg); } 92% { transform: rotate(-25deg); } }
+        @keyframes earTwitchRight { 0%, 85% { transform: rotate(15deg); } 87% { transform: rotate(25deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>JP-PRO 試算</h1>
-        <div class="subtitle">日本代付・專業代購旗艦版</div>
+        <h1>日幣代購 金額試算</h1>
+        <div class="subtitle">僅計算代付金額，不計入運費</div>
     </header>
 
     <div class="badges-container">
-        <div class="badge">演唱會超商代付</div>
-        <div class="badge">GameTrade / Club</div>
-        <div class="badge">哥吉拉代購</div>
-        <div class="badge">7-11 / 羅森 / 全家</div>
-        <div class="badge">跑腿代付</div>
-        <div class="badge">日本全通路代購</div>
+        <div class="badge bg-concert">演唱會超商代付</div>
+        <div class="badge bg-game">GameTrade / Club</div>
+        <div class="badge bg-godzilla">哥吉拉代購</div>
+        <div class="badge bg-cvs">7-11 / 羅森 / 全家</div>
+        <div class="badge bg-errand">跑腿代付</div>
+        <div class="badge bg-global">日本代購付款</div>
     </div>
 
     <div class="input-box">
@@ -324,19 +237,15 @@
         <div class="res-value"><span class="currency">NT$</span><span id="twdDisplay">0</span></div>
     </div>
 
-    <footer>&copy; 2026 JP Proxy Service. Secure, Professional & Cat-Approved.</footer>
+    <footer>&copy; 2026 hibaby Proxy Service. Secure & Colorful.</footer>
 </div>
 
-<div class="cat-peek" title="眨眨眼~">
+<div class="cat-peek">
     <div class="cat-head">
-        <div class="ears">
-            <div class="ear left"></div>
-            <div class="ear right"></div>
-        </div>
-        <div class="eyes">
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-        </div>
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
         <div class="nose"></div>
     </div>
 </div>
@@ -355,31 +264,18 @@
         }
 
         let twd = 0;
-
-        // 計算邏輯
         if (jpy < 30000) {
             twd = (jpy / 5) * 1.28 + 30;
-            twd = Math.round(twd);
-        } 
-        else if (jpy >= 30000 && jpy <= 50000) {
+        } else if (jpy >= 30000 && jpy <= 50000) {
             twd = (jpy / 5) * 1.28;
-            twd = Math.round(twd);
-        }
-        else {
+        } else {
             let rawTwd = (jpy / 5) * 1.25;
             let remainder = rawTwd % 100;
-            if (remainder <= 50) {
-                twd = Math.floor(rawTwd / 100) * 100;
-            } else {
-                twd = Math.ceil(rawTwd / 100) * 100;
-            }
+            twd = remainder <= 50 ? Math.floor(rawTwd / 100) * 100 : Math.ceil(rawTwd / 100) * 100;
         }
 
-        // 顯示結果
         resultArea.style.display = 'block';
-        
-        // 數字滾動動畫
-        animateValue(display, 0, twd, 1000);
+        animateValue(display, 0, Math.round(twd), 1000);
     }
 
     function animateValue(obj, start, end, duration) {
@@ -387,11 +283,8 @@
         const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const currentVal = Math.floor(progress * (end - start) + start);
-            obj.innerHTML = currentVal.toLocaleString();
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
+            obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+            if (progress < 1) window.requestAnimationFrame(step);
         };
         window.requestAnimationFrame(step);
     }
