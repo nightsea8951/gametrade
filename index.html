@@ -2,90 +2,293 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日本代購金額試算器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JP-PRO 試算 | 日本代購專業試算</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding: 20px; background-color: #f4f7f6; }
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-        h2 { color: #333; text-align: center; margin-bottom: 1.5rem; }
-        .service-list { font-size: 0.9rem; color: #666; margin-bottom: 1.5rem; border-left: 4px solid #007bff; padding-left: 10px; }
-        .input-group { margin-bottom: 1rem; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
-        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: 0.3s; }
-        button:hover { background-color: #0056b3; }
-        #result { margin-top: 1.5rem; padding: 15px; background: #e9ecef; border-radius: 6px; text-align: center; display: none; }
-        .twd-price { font-size: 1.5rem; font-weight: bold; color: #d9534f; }
+        :root {
+            --primary: #007AFF; /* 蘋果藍 */
+            --secondary: #a29bfe;
+            --accent: #00cec9;
+            --success: #34C759;
+            --bg-light: #F5F5F7;
+            --card-white: rgba(255, 255, 255, 0.88); /* 毛玻璃 */
+            --border-glow: rgba(0, 122, 255, 0.2);
+            --text-dark: #1D1D1F;
+            --text-gray: #86868B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body { 
+            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: var(--text-dark);
+            padding: 20px;
+            overflow: hidden; /* 防止捲動條 */
+        }
+
+        /* 動態流動背景 */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, #FFF 0%, #E0F2FE 50%, #CDEFFF 100%);
+            z-index: -1;
+            transform-origin: center;
+        }
+
+        body::before {
+            animation:流动Silk 12s ease-in-out infinite;
+            background: linear-gradient(-45deg, #fff, #b3e5fc, #f1f8e9, #fff);
+            background-size: 400% 400%;
+        }
+
+        body::after {
+            animation:流动Silk 15s ease infinite alternate;
+            background: radial-gradient(circle at 10% 20%, rgb(255, 255, 255) 0%, rgb(213, 235, 255) 50%, rgb(180, 222, 255) 100%);
+            opacity: 0.6;
+        }
+
+        @keyframes 流动Silk {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 旗艦級卡片：毛玻璃效果 2.0 */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-white);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 0 15px rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* 卡片頂部裝飾線 */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        header { text-align: center; margin-bottom: 25px; }
+        h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; color: var(--text-dark); }
+        .subtitle { font-size: 0.8rem; color: var(--text-gray); letter-spacing: 1.5px; }
+
+        /* 標籤美化 */
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .badge {
+            background: #E3F2FD;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--primary);
+            border: 1px solid rgba(162, 155, 254, 0.2);
+            transition: 0.3s ease;
+            font-weight: 500;
+        }
+        .badge:hover { background: #BBDEFB; }
+
+        /* 輸入區域 */
+        .input-box { margin-bottom: 20px; }
+        label { display: block; font-size: 0.9rem; margin-bottom: 10px; color: var(--text-dark); font-weight: 500; }
+        
+        .field-group { position: relative; }
+        .field-group .unit {
+            position: absolute;
+            left: 20px; top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Montserrat';
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        input {
+            width: 100%;
+            background: #FFFFFF;
+            border: 1.5px solid #EDEDF0;
+            border-radius: 18px;
+            padding: 16px 20px 16px 55px;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: 'Montserrat', sans-serif;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--border-glow);
+        }
+        input:focus + .unit { color: var(--primary); }
+
+        /* 按鈕美化 */
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 18px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.2);
+            letter-spacing: 0.5px;
+        }
+        button:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.3);
+        }
+        button:active { transform: translateY(0); }
+
+        /* 結果儀表板 */
+        #result-area {
+            margin-top: 35px;
+            background: rgba(0, 206, 201, 0.05);
+            border-radius: 24px;
+            padding: 25px;
+            text-align: center;
+            border: 1.5px dashed rgba(0, 206, 201, 0.3);
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .res-label { font-size: 0.8rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; font-weight: 500;}
+        .res-value { 
+            font-size: 3.2rem; 
+            font-family: 'Montserrat'; 
+            font-weight: 600; 
+            color: var(--success);
+            text-shadow: 0 0 20px rgba(85, 239, 196, 0.2);
+        }
+        .currency { font-size: 1.2rem; margin-right: 5px; vertical-align: middle; }
+
+        footer { margin-top: 30px; font-size: 0.7rem; color: var(--text-gray); text-align: center; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>代購金額試算器</h2>
-    <div class="service-list">
-        支援服務：<br>
-        • 日本演唱會 (超商取票付款)<br>
-        • GameTrade / GameClub 代購
+<div class="container">
+    <header>
+        <h1>JP-PRO 試算</h1>
+        <div class="subtitle">日本代付・專業代購專用</div>
+    </header>
+
+    <div class="badges-container">
+        <div class="badge">演唱會超商代付</div>
+        <div class="badge">GameTrade / Club</div>
+        <div class="badge">哥吉拉代購</div>
+        <div class="badge">7-11 / 羅森 / 全家</div>
+        <div class="badge">跑腿代付</div>
+        <div class="badge">日本代購付款</div>
     </div>
 
-    <div class="input-group">
-        <label for="jpyAmount">請輸入日幣金額 (JPY)</label>
-        <input type="number" id="jpyAmount" placeholder="例如: 10000" min="0">
+    <div class="input-box">
+        <label>請輸入商品日幣金額</label>
+        <div class="field-group">
+            <span class="unit">¥</span>
+            <input type="number" id="jpyAmount" placeholder="請輸入金額" autocomplete="off">
+        </div>
     </div>
 
-    <button onclick="calculate()">立即試算</button>
+    <button onclick="calculate()">立即計算 (TWD)</button>
 
-    <div id="result">
-        <div>預估代購總額 (TWD)</div>
-        <div class="twd-price" id="twdDisplay">$0</div>
-        <div id="logicNote" style="font-size: 0.8rem; color: #777; margin-top: 8px;"></div>
+    <div id="result-area">
+        <div class="res-label">預估結帳總額 (TWD)</div>
+        <div class="res-value"><span class="currency">NT$</span><span id="twdDisplay">0</span></div>
     </div>
+
+    <footer>&copy; 2026 JP Proxy Service. 清爽安全，極速服務</footer>
 </div>
 
 <script>
     function calculate() {
-        const jpy = parseFloat(document.getElementById('jpyAmount').value);
+        const jpyInput = document.getElementById('jpyAmount');
+        const jpy = parseFloat(jpyInput.value);
         const display = document.getElementById('twdDisplay');
-        const resultDiv = document.getElementById('result');
-        const logicNote = document.getElementById('logicNote');
+        const resultArea = document.getElementById('result-area');
 
-        if (isNaN(jpy) || jpy <= 0) {
-            alert("請輸入有效的金額");
+        if (!jpy || jpy < 0) {
+            alert("請輸入有效的金額 Please enter a valid amount.");
+            jpyInput.focus();
             return;
         }
 
         let twd = 0;
-        let note = "";
 
+        // 計算邏輯
         if (jpy < 30000) {
-            // 小於 30000：日幣/5 * 1.28 + 30
             twd = (jpy / 5) * 1.28 + 30;
-            note = "計算公式：(日幣/5 × 1.28) + 30台幣手續費";
-            twd = Math.round(twd); // 一般情況採四捨五入取整數
+            twd = Math.round(twd);
         } 
         else if (jpy >= 30000 && jpy <= 50000) {
-            // 中間地帶 (你沒提到，暫設為 1.28 但不加手續費，或維持原樣)
             twd = (jpy / 5) * 1.28;
-            note = "計算公式：日幣/5 × 1.28";
             twd = Math.round(twd);
         }
         else {
-            // 大於 50000：日幣/5 * 1.25
             let rawTwd = (jpy / 5) * 1.25;
-            
-            // 特殊捨入邏輯：尾數 <= 50 捨去，> 50 進位
             let remainder = rawTwd % 100;
             if (remainder <= 50) {
                 twd = Math.floor(rawTwd / 100) * 100;
             } else {
                 twd = Math.ceil(rawTwd / 100) * 100;
             }
-            note = "計算公式：日幣/5 × 1.25 (套用百位數捨入規則)";
         }
 
-        display.innerText = "$" + twd.toLocaleString();
-        logicNote.innerText = note;
-        resultDiv.style.display = 'block';
+        // 動態數字增加效果 (UX 加分項)
+        resultArea.style.display = 'block';
+        
+        // 使用數字動畫
+        animateValue(display, 0, twd, 800);
+    }
+
+    // 數字滾動動畫函式
+    function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const currentVal = Math.floor(progress * (end - start) + start);
+            obj.innerHTML = currentVal.toLocaleString();
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
     }
 </script>
 
