@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JP-PRO 試算 | 日本代購專業試算</title>
+    <title>JP-PRO | 日本代購專業大尺寸試算</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #007AFF; /* 蘋果藍 */
+            --primary: #007AFF; 
             --secondary: #a29bfe;
             --accent: #00cec9;
             --success: #34C759;
             --bg-light: #F5F5F7;
-            --card-white: rgba(255, 255, 255, 0.88); /* 毛玻璃 */
+            --card-white: rgba(255, 255, 255, 0.92); 
             --border-glow: rgba(0, 122, 255, 0.2);
             --text-dark: #1D1D1F;
             --text-gray: #86868B;
@@ -24,14 +24,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body { 
-            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
+            font-family: 'Noto Sans TC', 'Inter', sans-serif; 
             min-height: 100vh; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             color: var(--text-dark);
-            padding: 20px;
-            overflow: hidden; /* 防止捲動條 */
+            padding: 40px 20px;
+            overflow-x: hidden;
         }
 
         /* 動態流動背景 */
@@ -39,21 +39,20 @@
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, #FFF 0%, #E0F2FE 50%, #CDEFFF 100%);
             z-index: -1;
             transform-origin: center;
         }
 
         body::before {
-            animation:流动Silk 12s ease-in-out infinite;
-            background: linear-gradient(-45deg, #fff, #b3e5fc, #f1f8e9, #fff);
+            animation: 流动Silk 12s ease-in-out infinite;
+            background: linear-gradient(-45deg, #fff, #e3f2fd, #f1f8e9, #fff);
             background-size: 400% 400%;
         }
 
         body::after {
-            animation:流动Silk 15s ease infinite alternate;
-            background: radial-gradient(circle at 10% 20%, rgb(255, 255, 255) 0%, rgb(213, 235, 255) 50%, rgb(180, 222, 255) 100%);
-            opacity: 0.6;
+            animation: 流动Silk 15s ease infinite alternate;
+            background: radial-gradient(circle at 10% 20%, rgb(255, 255, 255) 0%, rgb(220, 240, 255) 50%, rgb(200, 230, 255) 100%);
+            opacity: 0.5;
         }
 
         @keyframes 流动Silk {
@@ -62,142 +61,140 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 旗艦級卡片：毛玻璃效果 2.0 */
+        /* 旗艦級大尺寸卡片 */
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 600px; /* 這裡放大了寬度 */
             background: var(--card-white);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px 30px;
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 0 15px rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 40px; /* 增加圓角感 */
+            padding: 50px 45px; /* 增加內距 */
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             position: relative;
-            overflow: hidden;
-            animation: slideInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: slideInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* 卡片頂部裝飾線 */
         .container::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
+            top: 0; left: 0; right: 0; height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
-        header { text-align: center; margin-bottom: 25px; }
-        h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; color: var(--text-dark); }
-        .subtitle { font-size: 0.8rem; color: var(--text-gray); letter-spacing: 1.5px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 10px; color: var(--text-dark); }
+        .subtitle { font-size: 0.95rem; color: var(--text-gray); letter-spacing: 2px; }
 
         /* 標籤美化 */
         .badges-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 12px;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         .badge {
-            background: #E3F2FD;
-            padding: 6px 14px;
-            border-radius: 12px;
-            font-size: 0.75rem;
+            background: #F0F7FF;
+            padding: 8px 18px;
+            border-radius: 15px;
+            font-size: 0.85rem;
             color: var(--primary);
-            border: 1px solid rgba(162, 155, 254, 0.2);
+            border: 1px solid rgba(0, 122, 255, 0.1);
             transition: 0.3s ease;
             font-weight: 500;
         }
-        .badge:hover { background: #BBDEFB; }
+        .badge:hover { background: var(--primary); color: white; transform: scale(1.05); }
 
         /* 輸入區域 */
-        .input-box { margin-bottom: 20px; }
-        label { display: block; font-size: 0.9rem; margin-bottom: 10px; color: var(--text-dark); font-weight: 500; }
+        .input-box { margin-bottom: 30px; }
+        label { display: block; font-size: 1rem; margin-bottom: 15px; color: var(--text-dark); font-weight: 500; }
         
         .field-group { position: relative; }
         .field-group .unit {
             position: absolute;
-            left: 20px; top: 50%;
+            left: 25px; top: 50%;
             transform: translateY(-50%);
             font-family: 'Montserrat';
-            font-size: 1.3rem;
-            color: var(--accent);
-            font-weight: 600;
-            transition: color 0.3s;
+            font-size: 1.6rem;
+            color: var(--primary);
+            font-weight: 700;
         }
 
         input {
             width: 100%;
             background: #FFFFFF;
-            border: 1.5px solid #EDEDF0;
-            border-radius: 18px;
-            padding: 16px 20px 16px 55px;
-            font-size: 1.3rem;
+            border: 2px solid #E5E5E7;
+            border-radius: 22px;
+            padding: 22px 25px 22px 65px; /* 增加高度與內距 */
+            font-size: 1.5rem; /* 字體放大 */
             color: var(--text-dark);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
         input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 15px var(--border-glow);
+            box-shadow: 0 0 20px var(--border-glow);
+            transform: scale(1.01);
         }
-        input:focus + .unit { color: var(--primary); }
 
         /* 按鈕美化 */
         button {
             width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 22px;
+            background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
             border: none;
-            border-radius: 18px;
+            border-radius: 22px;
             color: white;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.2);
-            letter-spacing: 0.5px;
+            box-shadow: 0 10px 25px rgba(0, 122, 255, 0.25);
+            letter-spacing: 1px;
         }
         button:hover {
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 122, 255, 0.35);
         }
         button:active { transform: translateY(0); }
 
         /* 結果儀表板 */
         #result-area {
-            margin-top: 35px;
-            background: rgba(0, 206, 201, 0.05);
-            border-radius: 24px;
-            padding: 25px;
+            margin-top: 45px;
+            background: #F9FAFB;
+            border-radius: 30px;
+            padding: 35px;
             text-align: center;
-            border: 1.5px dashed rgba(0, 206, 201, 0.3);
+            border: 2px solid rgba(0, 122, 255, 0.05);
             display: none;
-            animation: fadeIn 0.4s ease-out;
+            animation: fadeIn 0.5s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .res-label { font-size: 0.8rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; font-weight: 500;}
+        .res-label { font-size: 1rem; color: var(--text-gray); letter-spacing: 2px; margin-bottom: 12px; font-weight: 500;}
         .res-value { 
-            font-size: 3.2rem; 
+            font-size: 4rem; /* 放大台幣數字 */
             font-family: 'Montserrat'; 
-            font-weight: 600; 
+            font-weight: 700; 
             color: var(--success);
-            text-shadow: 0 0 20px rgba(85, 239, 196, 0.2);
+            line-height: 1;
         }
-        .currency { font-size: 1.2rem; margin-right: 5px; vertical-align: middle; }
+        .currency { font-size: 1.5rem; margin-right: 8px; vertical-align: baseline; color: var(--text-dark); }
 
-        footer { margin-top: 30px; font-size: 0.7rem; color: var(--text-gray); text-align: center; }
+        footer { margin-top: 40px; font-size: 0.85rem; color: var(--text-gray); text-align: center; opacity: 0.7; }
     </style>
 </head>
 <body>
@@ -205,7 +202,7 @@
 <div class="container">
     <header>
         <h1>JP-PRO 試算</h1>
-        <div class="subtitle">日本代付・專業代購專用</div>
+        <div class="subtitle">日本代付・專業代購旗艦版</div>
     </header>
 
     <div class="badges-container">
@@ -214,25 +211,25 @@
         <div class="badge">哥吉拉代購</div>
         <div class="badge">7-11 / 羅森 / 全家</div>
         <div class="badge">跑腿代付</div>
-        <div class="badge">日本代購付款</div>
+        <div class="badge">日本全通路代購</div>
     </div>
 
     <div class="input-box">
-        <label>請輸入商品日幣金額</label>
+        <label>請輸入商品日幣金額 (JPY)</label>
         <div class="field-group">
             <span class="unit">¥</span>
-            <input type="number" id="jpyAmount" placeholder="請輸入金額" autocomplete="off">
+            <input type="number" id="jpyAmount" placeholder="0" autocomplete="off">
         </div>
     </div>
 
-    <button onclick="calculate()">立即計算 (TWD)</button>
+    <button onclick="calculate()">立即計算預估總額</button>
 
     <div id="result-area">
         <div class="res-label">預估結帳總額 (TWD)</div>
         <div class="res-value"><span class="currency">NT$</span><span id="twdDisplay">0</span></div>
     </div>
 
-    <footer>&copy; 2026 JP Proxy Service. 清爽安全，極速服務</footer>
+    <footer>&copy; 2026 JP Proxy Service. Secure & Professional.</footer>
 </div>
 
 <script>
@@ -243,7 +240,7 @@
         const resultArea = document.getElementById('result-area');
 
         if (!jpy || jpy < 0) {
-            alert("請輸入有效的金額 Please enter a valid amount.");
+            alert("請輸入有效的金額");
             jpyInput.focus();
             return;
         }
@@ -269,14 +266,13 @@
             }
         }
 
-        // 動態數字增加效果 (UX 加分項)
+        // 顯示結果
         resultArea.style.display = 'block';
         
-        // 使用數字動畫
-        animateValue(display, 0, twd, 800);
+        // 數字滾動動畫
+        animateValue(display, 0, twd, 1000);
     }
 
-    // 數字滾動動畫函式
     function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {
