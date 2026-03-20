@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JP-PRO | 日本代購專業試算</title>
+    <title>日幣代購 金額試算 | hibaby 日本專業代購</title>
+    
+    <meta name="description" content="專業日本代購試算工具，專精於 Gametrade 帳號代購、日本演唱會超商代付及哥吉拉商店代購。提供透明的日幣匯率公式。">
+    <meta name="keywords" content="Gametrade代購, 日本代購, 日本代付, 日本演唱會代付, 日幣試算, hibaby">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -17,7 +21,7 @@
             --card-white: rgba(255, 255, 255, 0.92); 
             --text-dark: #1D1D1F;
             --text-gray: #86868B;
-            --cat-color: #2c3e50;
+            --cat-color: #2c3e50; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -34,13 +38,12 @@
             position: relative;
         }
 
-        /* --- 動態流動背景 --- */
+        /* 背景流動動畫 */
         body::before, body::after {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: -1;
-            transform-origin: center;
         }
         body::before {
             animation: 流動Silk 12s ease-in-out infinite;
@@ -58,7 +61,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- 放大卡片容器 --- */
         .container {
             width: 100%;
             max-width: 600px;
@@ -75,10 +77,9 @@
         }
 
         header { text-align: center; margin-bottom: 35px; }
-        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
         .subtitle { font-size: 0.95rem; color: var(--text-gray); letter-spacing: 2px; }
 
-        /* --- 彩色標籤樣式 --- */
         .badges-container {
             display: flex;
             flex-wrap: wrap;
@@ -91,20 +92,14 @@
             border-radius: 14px;
             font-size: 0.85rem;
             font-weight: 600;
-            transition: 0.3s ease;
-            border: 1.5px solid transparent;
         }
-        .badge:hover { transform: scale(1.1); filter: brightness(0.95); }
+        .bg-concert { background: #E3F2FD; color: #1976D2; } 
+        .bg-game { background: #F3E5F5; color: #7B1FA2; }    
+        .bg-godzilla { background: #FFF3E0; color: #E65100; } 
+        .bg-cvs { background: #E8F5E9; color: #2E7D32; }     
+        .bg-errand { background: #FFEBEE; color: #C62828; }  
+        .bg-global { background: #E0F7FA; color: #00838F; }  
 
-        /* 各類別專屬顏色 */
-        .bg-concert { background: #E3F2FD; color: #1976D2; } /* 藍 */
-        .bg-game { background: #F3E5F5; color: #7B1FA2; }    /* 紫 */
-        .bg-godzilla { background: #FFF3E0; color: #E65100; } /* 橘 */
-        .bg-cvs { background: #E8F5E9; color: #2E7D32; }     /* 綠 */
-        .bg-errand { background: #FFEBEE; color: #C62828; }  /* 紅 */
-        .bg-global { background: #E0F7FA; color: #00838F; }  /* 青 */
-
-        /* --- 輸入與按鈕 --- */
         .input-box { margin-bottom: 30px; }
         label { display: block; font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; }
         .field-group { position: relative; }
@@ -125,7 +120,6 @@
             padding: 22px 25px 22px 65px;
             font-size: 1.6rem;
             color: var(--text-dark);
-            transition: 0.3s;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
         }
@@ -142,11 +136,9 @@
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(0, 122, 255, 0.25);
         }
         button:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 122, 255, 0.35); }
 
-        /* --- 結果顯示 --- */
         #result-area {
             margin-top: 40px;
             background: #F9FAFB;
@@ -157,43 +149,70 @@
             display: none;
             animation: fadeIn 0.5s ease-out;
         }
-        .res-label { font-size: 1rem; color: var(--text-gray); letter-spacing: 2px; margin-bottom: 12px; }
         .res-value { font-size: 4.2rem; font-family: 'Montserrat'; font-weight: 700; color: var(--success); }
         .currency { font-size: 1.6rem; margin-right: 8px; color: var(--text-dark); }
 
         footer { margin-top: 40px; font-size: 0.85rem; color: var(--text-gray); text-align: center; opacity: 0.7; }
 
-        /* --- 🐱 會動的黑貓 --- */
+        /* --- 🐰 對話氣泡與兔子連結 --- */
         .cat-peek {
             position: fixed;
             bottom: -5px; right: 40px;
             width: 90px; height: 70px;
             z-index: 1;
-            cursor: pointer;
             transition: 0.3s;
+            text-decoration: none;
         }
-        .cat-peek:hover { transform: translateY(-15px); }
+
+        /* 對話氣泡樣式 */
+        .speech-bubble {
+            position: absolute;
+            top: -65px; /* 在頭頂上方 */
+            right: -10px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+        }
+
+        /* 氣泡小箭頭 */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 35px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid var(--primary);
+        }
+
+        /* 選到兔子（Hover）時顯示氣泡 */
+        .cat-peek:hover .speech-bubble {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .cat-peek:hover { transform: translateY(-10px); }
+
         .cat-head {
             position: absolute; bottom: 0; left: 0;
             width: 85px; height: 65px;
             background: var(--cat-color);
             border-radius: 50px 50px 0 0;
         }
-        .ear {
-            position: absolute; top: -18px;
-            width: 25px; height: 35px;
-            background: var(--cat-color);
-            border-radius: 50% 50% 0 0;
-        }
+        .ear { position: absolute; top: -18px; width: 25px; height: 35px; background: var(--cat-color); border-radius: 50% 50% 0 0; }
         .ear.left { left: 10px; transform: rotate(-15deg); animation: earTwitchLeft 6s infinite alternate; }
         .ear.right { right: 10px; transform: rotate(15deg); animation: earTwitchRight 6s infinite 0.5s alternate; }
-        .eye {
-            position: absolute; top: 22px;
-            width: 15px; height: 15px;
-            background: #F4D03F;
-            border-radius: 50%;
-            animation: blink 8s infinite;
-        }
+        .eye { position: absolute; top: 22px; width: 15px; height: 15px; background: #F4D03F; border-radius: 50%; animation: blink 8s infinite; }
         .eye.left { left: 22px; } .eye.right { right: 22px; }
         .eye::after { content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background: #000; border-radius: 50%; transform: translate(-50%, -50%); }
         .nose { position: absolute; top: 38px; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #ffcccc; }
@@ -201,8 +220,8 @@
         @keyframes blink { 0%, 48%, 52%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } }
         @keyframes earTwitchLeft { 0%, 90% { transform: rotate(-15deg); } 92% { transform: rotate(-25deg); } }
         @keyframes earTwitchRight { 0%, 85% { transform: rotate(15deg); } 87% { transform: rotate(25deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; } }
-        @keyframes slideInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -219,7 +238,7 @@
         <div class="badge bg-godzilla">哥吉拉代購</div>
         <div class="badge bg-cvs">7-11 / 羅森 / 全家</div>
         <div class="badge bg-errand">跑腿代付</div>
-        <div class="badge bg-global">日本代購付款</div>
+        <div class="badge bg-global">日本全通路代付</div>
     </div>
 
     <div class="input-box">
@@ -233,14 +252,15 @@
     <button onclick="calculate()">立即計算預估總額</button>
 
     <div id="result-area">
-        <div class="res-label">預估結帳總額 (TWD)</div>
+        <div class="res-label" style="font-size: 1rem; color: var(--text-gray); letter-spacing: 2px; margin-bottom: 12px;">預估結帳總額 (TWD)</div>
         <div class="res-value"><span class="currency">NT$</span><span id="twdDisplay">0</span></div>
     </div>
 
-    <footer>&copy; 2026 hibaby Proxy Service. Secure & Colorful.</footer>
+    <footer>&copy; 2026 hibaby Proxy Service. Secure & Professional.</footer>
 </div>
 
-<div class="cat-peek">
+<a href="https://www.hibabyfunbox.com/" class="cat-peek">
+    <div class="speech-bubble">返回 hibaby 官網</div>
     <div class="cat-head">
         <div class="ear left"></div>
         <div class="ear right"></div>
@@ -248,7 +268,7 @@
         <div class="eye right"></div>
         <div class="nose"></div>
     </div>
-</div>
+</a>
 
 <script>
     function calculate() {
