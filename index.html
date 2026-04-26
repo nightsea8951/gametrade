@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>日幣代購 金額試算 | hibaby 日本專業代購</title>
     
-    <meta name="description" content="專業日本代購試算工具，專精於 Gametrade 帳號代購、日本演唱會超商代付及哥吉拉商店代購。提供透明的日幣匯率公式。">
+    <meta name="description" content="專業日本代購試算工具，專精於 Gametrade、日本演唱會、哥吉拉商店代購。一鍵計算委託金額。">
     <meta name="keywords" content="Gametrade代購, 日本代購, 日本代付, 日本演唱會代付, 日幣試算, hibaby">
     
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.hibabyfunbox.com/">
+    <meta property="og:title" content="日幣代購 金額試算 | hibaby 日本專業代購">
+    <meta property="og:description" content="快速回覆！演唱會/GameTrade/日本全通路代付，立即計算你的委託總額。">
+    <meta property="og:image" content="https://www.hibabyfunbox.com/favicon.ico">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -46,16 +52,16 @@
             z-index: -1;
         }
         body::before {
-            animation: 流動Silk 12s ease-in-out infinite;
+            animation: flowSilk 12s ease-in-out infinite;
             background: linear-gradient(-45deg, #fff, #e3f2fd, #f1f8e9, #fff);
             background-size: 400% 400%;
         }
         body::after {
-            animation: 流動Silk 15s ease infinite alternate;
+            animation: flowSilk 15s ease infinite alternate;
             background: radial-gradient(circle at 10% 20%, rgb(255, 255, 255) 0%, rgb(220, 240, 255) 50%, rgb(200, 230, 255) 100%);
             opacity: 0.5;
         }
-        @keyframes 流動Silk {
+        @keyframes flowSilk {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -68,7 +74,7 @@
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-radius: 40px;
-            padding: 50px 45px;
+            padding: 40px 30px;
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             position: relative;
@@ -76,152 +82,216 @@
             animation: slideInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        header { text-align: center; margin-bottom: 35px; }
-        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
-        .subtitle { font-size: 0.95rem; color: var(--text-gray); letter-spacing: 2px; }
+        header { text-align: center; margin-bottom: 25px; }
+        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
+        .subtitle { font-size: 0.9rem; color: var(--text-gray); letter-spacing: 1px; }
 
         .badges-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         .badge {
-            padding: 8px 18px;
-            border-radius: 14px;
-            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 0.8rem;
             font-weight: 600;
+            transition: 0.3s;
         }
+        /* 原有標籤顏色 */
         .bg-concert { background: #E3F2FD; color: #1976D2; } 
         .bg-game { background: #F3E5F5; color: #7B1FA2; }    
         .bg-godzilla { background: #FFF3E0; color: #E65100; } 
         .bg-cvs { background: #E8F5E9; color: #2E7D32; }     
         .bg-errand { background: #FFEBEE; color: #C62828; }  
         .bg-global { background: #E0F7FA; color: #00838F; }  
+        /* 新增標籤顏色 */
+        .bg-jump { background: #FFEBEE; color: #D32F2F; }       /* JUMP (紅) */
+        .bg-capcom { background: #FFF8E1; color: #F57C00; }     /* Capcom (黃/橘) */
+        .bg-toranoana { background: #E8EAF6; color: #3F51B5; }  /* 虎之穴 (靛藍) */
+        .bg-asmart { background: #FCE4EC; color: #C2185B; }     /* A!SMART (粉紫) */
 
-        .input-box { margin-bottom: 30px; }
-        label { display: block; font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; }
+        .input-box { margin-bottom: 20px; }
+        label { display: block; font-size: 1rem; margin-bottom: 12px; font-weight: 600; color: var(--text-dark); }
+        
         .field-group { position: relative; }
         .field-group .unit {
             position: absolute;
-            left: 25px; top: 50%;
+            left: 20px; top: 50%;
             transform: translateY(-50%);
             font-family: 'Montserrat';
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: var(--primary);
             font-weight: 700;
         }
+        
         input {
             width: 100%;
             background: #FFFFFF;
             border: 2px solid #E5E5E7;
-            border-radius: 22px;
-            padding: 22px 25px 22px 65px;
-            font-size: 1.6rem;
+            border-radius: 20px;
+            padding: 18px 20px 18px 55px;
+            font-size: 1.5rem;
             color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
+            transition: 0.3s;
         }
-        input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 20px rgba(0,122,255,0.15); }
+        input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 15px rgba(0,122,255,0.1); }
 
-        button {
+        .btn-calc {
             width: 100%;
-            padding: 22px;
+            padding: 18px;
             background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
             border: none;
-            border-radius: 22px;
+            border-radius: 20px;
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.2);
         }
-        button:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0, 122, 255, 0.35); }
+        .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0, 122, 255, 0.3); }
+        .btn-calc:active { transform: translateY(0); }
 
         #result-area {
-            margin-top: 40px;
+            margin-top: 30px;
             background: #F9FAFB;
-            border-radius: 30px;
-            padding: 35px;
+            border-radius: 25px;
+            padding: 30px;
             text-align: center;
-            border: 2px solid rgba(0, 122, 255, 0.05);
+            border: 1px solid rgba(0, 122, 255, 0.1);
             display: none;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.5s ease-out forwards;
         }
-        .res-value { font-size: 4.2rem; font-family: 'Montserrat'; font-weight: 700; color: var(--success); }
-        .currency { font-size: 1.6rem; margin-right: 8px; color: var(--text-dark); }
+        .res-value { font-size: 3.5rem; font-family: 'Montserrat'; font-weight: 700; color: var(--success); line-height: 1.2; }
+        .currency { font-size: 1.4rem; margin-right: 4px; color: var(--text-dark); }
 
-        footer { margin-top: 40px; font-size: 0.85rem; color: var(--text-gray); text-align: center; opacity: 0.7; }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            width: 100%;
+            padding: 16px;
+            background: #06C755; 
+            color: white;
+            text-decoration: none;
+            border-radius: 18px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .cta-btn:hover { background: #05b34c; transform: scale(1.02); }
+        .cta-btn svg { margin-right: 8px; }
 
-        /* --- 🐰 對話氣泡與兔子連結 --- */
+        /* --- 🌟 信任感實績跑馬燈 --- */
+        .trust-section {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .trust-title {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            white-space: nowrap;
+            /* 兩側淡出效果 */
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll-left 25s linear infinite;
+        }
+        /* 滑鼠移入時暫停滾動 */
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+        .marquee-content img {
+            height: 90px;
+            width: auto;
+            border-radius: 10px;
+            margin: 0 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            object-fit: cover;
+            vertical-align: middle;
+            background: #fff;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        footer { margin-top: 30px; font-size: 0.8rem; color: var(--text-gray); text-align: center; opacity: 0.7; }
+
+        /* --- 🐱 浮動貓咪與氣泡 --- */
         .cat-peek {
             position: fixed;
-            bottom: -5px; right: 40px;
-            width: 90px; height: 70px;
-            z-index: 1;
+            bottom: -5px; right: 30px;
+            width: 80px; height: 60px;
+            z-index: 100;
             transition: 0.3s;
             text-decoration: none;
         }
-
-        /* 對話氣泡樣式 */
         .speech-bubble {
             position: absolute;
-            top: -65px; /* 在頭頂上方 */
-            right: -10px;
+            top: -60px; right: -10px;
             background: var(--primary);
             color: white;
-            padding: 8px 15px;
-            border-radius: 15px;
-            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
             font-weight: 500;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.2);
         }
-
-        /* 氣泡小箭頭 */
         .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 35px;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
+            content: ''; position: absolute; bottom: -8px; right: 30px;
+            border-left: 6px solid transparent; border-right: 6px solid transparent;
             border-top: 10px solid var(--primary);
         }
+        .cat-peek:hover .speech-bubble { opacity: 1; visibility: visible; transform: translateY(0); }
+        .cat-peek:hover { transform: translateY(-8px); }
 
-        /* 選到兔子（Hover）時顯示氣泡 */
-        .cat-peek:hover .speech-bubble {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .cat-peek:hover { transform: translateY(-10px); }
-
-        .cat-head {
-            position: absolute; bottom: 0; left: 0;
-            width: 85px; height: 65px;
-            background: var(--cat-color);
-            border-radius: 50px 50px 0 0;
-        }
-        .ear { position: absolute; top: -18px; width: 25px; height: 35px; background: var(--cat-color); border-radius: 50% 50% 0 0; }
+        .cat-head { position: absolute; bottom: 0; left: 0; width: 80px; height: 60px; background: var(--cat-color); border-radius: 40px 40px 0 0; }
+        .ear { position: absolute; top: -15px; width: 20px; height: 30px; background: var(--cat-color); border-radius: 50% 50% 0 0; }
         .ear.left { left: 10px; transform: rotate(-15deg); animation: earTwitchLeft 6s infinite alternate; }
         .ear.right { right: 10px; transform: rotate(15deg); animation: earTwitchRight 6s infinite 0.5s alternate; }
-        .eye { position: absolute; top: 22px; width: 15px; height: 15px; background: #F4D03F; border-radius: 50%; animation: blink 8s infinite; }
-        .eye.left { left: 22px; } .eye.right { right: 22px; }
-        .eye::after { content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background: #000; border-radius: 50%; transform: translate(-50%, -50%); }
-        .nose { position: absolute; top: 38px; left: 50%; transform: translateX(-50%); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #ffcccc; }
+        .eye { position: absolute; top: 20px; width: 12px; height: 12px; background: #F4D03F; border-radius: 50%; animation: blink 8s infinite; }
+        .eye.left { left: 20px; } .eye.right { right: 20px; }
+        .eye::after { content: ''; position: absolute; top: 50%; left: 50%; width: 5px; height: 5px; background: #000; border-radius: 50%; transform: translate(-50%, -50%); }
+        .nose { position: absolute; top: 35px; left: 50%; transform: translateX(-50%); border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #ffcccc; }
 
         @keyframes blink { 0%, 48%, 52%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.1); } }
         @keyframes earTwitchLeft { 0%, 90% { transform: rotate(-15deg); } 92% { transform: rotate(-25deg); } }
         @keyframes earTwitchRight { 0%, 85% { transform: rotate(15deg); } 87% { transform: rotate(25deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 480px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 1.5rem; }
+            .res-value { font-size: 2.8rem; }
+            .marquee-content img { height: 75px; } /* 手機版圖片稍微縮小 */
+        }
     </style>
 </head>
 <body>
@@ -229,31 +299,73 @@
 <div class="container">
     <header>
         <h1>日幣代購 金額試算</h1>
-        <div class="subtitle">僅計算代付金額，不計入運費</div>
+        <div class="subtitle">輸入商品日幣原價，自動計算總額</div>
     </header>
 
     <div class="badges-container">
-        <div class="badge bg-concert">演唱會超商代付</div>
-        <div class="badge bg-game">GameTrade / Club</div>
+        <div class="badge bg-concert">演唱會代付</div>
+        <div class="badge bg-game">GameTrade</div>
         <div class="badge bg-godzilla">哥吉拉代購</div>
-        <div class="badge bg-cvs">7-11 / 羅森 / 全家</div>
-        <div class="badge bg-errand">跑腿代付</div>
-        <div class="badge bg-global">日本全通路代付</div>
+        <div class="badge bg-cvs">超商代付</div>
+        <div class="badge bg-errand">在地跑腿</div>
+        <div class="badge bg-global">全通路代買</div>
+        <div class="badge bg-jump">JUMP</div>
+        <div class="badge bg-capcom">Capcom</div>
+        <div class="badge bg-toranoana">虎之穴</div>
+        <div class="badge bg-asmart">A!SMART</div>
     </div>
 
     <div class="input-box">
-        <label>請輸入商品日幣金額 (JPY)</label>
+        <label for="jpyAmount">請輸入商品日幣金額 (JPY)</label>
         <div class="field-group">
             <span class="unit">¥</span>
-            <input type="number" id="jpyAmount" placeholder="0" autocomplete="off">
+            <input type="number" id="jpyAmount" placeholder="例如: 5000" autocomplete="off" onkeypress="if(event.key === 'Enter') calculate()">
         </div>
     </div>
 
-    <button onclick="calculate()">立即計算預估總額</button>
+    <button class="btn-calc" onclick="calculate()">立即計算預估總額</button>
 
     <div id="result-area">
-        <div class="res-label" style="font-size: 1rem; color: var(--text-gray); letter-spacing: 2px; margin-bottom: 12px;">預估結帳總額 (TWD)</div>
+        <div class="res-label" style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 8px;">預估委託總額 (TWD)</div>
         <div class="res-value"><span class="currency">NT$</span><span id="twdDisplay">0</span></div>
+        
+        <a href="https://www.hibabyfunbox.com/pages/customer" class="cta-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L1 23l6.71-1.97C9.02 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+            聯繫客服委託下單
+        </a>
+    </div>
+
+    <div class="trust-section">
+        <div class="trust-title">✦ 數千筆成功代付實績，安心委託 ✦</div>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <img src="https://i.postimg.cc/05DGf4mC/ri-ben-dai-gou-zheng-ming-1.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/ZYpPcQ3c/ri-ben-dai-gou-zheng-ming-2.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/ZKm8DLF1/ri-ben-dai-gou-zheng-ming-3.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/mZC3wnMy/ri-ben-dai-gou-zheng-ming-4.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/7P01VR7d/ri-ben-dai-gou-zheng-ming-5.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/5NJBkmqr/ri-ben-dai-gou-zheng-ming-10.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/XNdK8Pd4/ri-ben-dai-gou-zheng-ming-11.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/9F2dNBtK/ri-ben-dai-gou-zheng-ming-12.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/Y2YN3Pgb/ri-ben-dai-gou-zheng-ming-6.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/v8f7zK9j/ri-ben-dai-gou-zheng-ming-7.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/FF3bZ6c2/ri-ben-dai-gou-zheng-ming-8.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/QN1gbz1L/ri-ben-dai-gou-zheng-ming-9.webp" alt="日本代購證明">
+                
+                <img src="https://i.postimg.cc/05DGf4mC/ri-ben-dai-gou-zheng-ming-1.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/ZYpPcQ3c/ri-ben-dai-gou-zheng-ming-2.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/ZKm8DLF1/ri-ben-dai-gou-zheng-ming-3.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/mZC3wnMy/ri-ben-dai-gou-zheng-ming-4.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/7P01VR7d/ri-ben-dai-gou-zheng-ming-5.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/5NJBkmqr/ri-ben-dai-gou-zheng-ming-10.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/XNdK8Pd4/ri-ben-dai-gou-zheng-ming-11.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/9F2dNBtK/ri-ben-dai-gou-zheng-ming-12.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/Y2YN3Pgb/ri-ben-dai-gou-zheng-ming-6.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/v8f7zK9j/ri-ben-dai-gou-zheng-ming-7.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/FF3bZ6c2/ri-ben-dai-gou-zheng-ming-8.webp" alt="日本代購證明">
+                <img src="https://i.postimg.cc/QN1gbz1L/ri-ben-dai-gou-zheng-ming-9.webp" alt="日本代購證明">
+            </div>
+        </div>
     </div>
 
     <footer>&copy; 2026 hibaby Proxy Service. Secure & Professional.</footer>
@@ -277,8 +389,8 @@
         const display = document.getElementById('twdDisplay');
         const resultArea = document.getElementById('result-area');
 
-        if (!jpy || jpy < 0) {
-            alert("請輸入有效的金額");
+        if (isNaN(jpy) || jpy <= 0) {
+            alert("請輸入有效的日幣金額");
             jpyInput.focus();
             return;
         }
@@ -295,7 +407,12 @@
         }
 
         resultArea.style.display = 'block';
-        animateValue(display, 0, Math.round(twd), 1000);
+        
+        animateValue(display, 0, Math.round(twd), 800);
+
+        setTimeout(() => {
+            resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
     }
 
     function animateValue(obj, start, end, duration) {
@@ -304,7 +421,9 @@
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
-            if (progress < 1) window.requestAnimationFrame(step);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
         };
         window.requestAnimationFrame(step);
     }
